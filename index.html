@@ -1,0 +1,214 @@
+
+<!DOCTYPE html><html xmlns:og="http://ogp.me/ns#"><head><meta charset="UTF-8" /><title>SourceTreeとGithubでGitの練習環境をつくる - Qiita</title><meta content="width=device-width,initial-scale=1" name="viewport" /><meta content="前回、はじめてのSourceTree（使い方編）の続きになります。
+組織でGitを使う方は多いと思いますが、自分で勉強する環境が欲しい方向けにログを残します。
+2018.1.22 追記
+私も少しGitの扱いに慣れてきたので、ブログの方に私がよく使うGitコマンドの方をまとめました。
+もしよろしければご覧ください。
+https://re-engines.com/tag/git/
+
+
+GitとGithubの違い
+
+似ている名前の2つ、それぞれどのようなものなのか？
+ざっくり..." name="description" /><meta content="#55c500" name="theme-color" /><meta content="summary" name="twitter:card" /><meta content="@Qiita" name="twitter:site" /><meta content="tony_201612" name="twitter:creator" /><meta content="SourceTreeとGithubでGitの練習環境をつくる - Qiita" property="og:title" /><meta content="article" property="og:type" /><meta content="https://qiita.com/naoki85/items/4f44601f1365c18035f4" property="og:url" /><meta content="https://cdn.qiita.com/assets/qiita-fb-2887e7b4aad86fd8c25cea84846f2236.png" property="og:image" /><meta content="前回、&lt;a href=&quot;http://qiita.com/naoki85/items/c7660d70347e9e70b201&quot; target=&quot;_blank&quot;&gt;はじめてのSourceTree（使い方編）&lt;/a&gt;の続きになります。
+組..." property="og:description" /><meta content="Qiita" property="og:site_name" /><meta content="564524038" property="fb:admins" /><link rel="canonical" href="https://qiita.com/naoki85/items/4f44601f1365c18035f4" /><link rel="shortcut icon" type="image/x-icon" href="https://cdn.qiita.com/assets/favicons/public/production-4ff10c1e1e2b5fcb353ff9cafdd56c70.ico" /><link rel="apple-touch-icon" type="image/png" href="https://cdn.qiita.com/assets/favicons/public/apple-touch-icon-f9a6afad761ec2306e10db2736187c8b.png" /><link href="/opensearch.xml" rel="search" title="Qiita" type="application/opensearchdescription+xml" /><link rel="stylesheet" media="all" href="https://cdn.qiita.com/assets/public-d2b8be51ee818d33d07759606e65d7f5.min.css" /><meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="ce499zAeuW0eyKDDS/2VmPbisVtXeCUkznZ42M13kgKwK7mO1yn+/Hv94zDZs8IBm5K0o3xAD2mg9+dbu7WlSQ==" /><script>
+  window.gtmDataLayer = [
+    {
+      'analytics.dimension5': 'false',
+      'app.env': 'production',
+      'app.layoutVersion': 1,
+      'app.userId': 20093
+    },
+    { 'gtm.start': new Date().getTime(), event: 'gtm.js' }
+  ];
+</script>
+<script src="https://www.googletagmanager.com/gtm.js?id=GTM-TBQWPN&l=gtmDataLayer" async></script>
+</head><body class="without-js" id=""><noscript><iframe height="0" src="//www.googletagmanager.com/ns.html?id=GTM-TBQWPN" style="display:none;visibility:hidden" width="0"></iframe></noscript><script>
+  document.body.className = document.body.className.replace('without-js', '') + ' with-js';
+  window.Qiita = {"asset_host":"cdn.qiita.com","TLD":"com","controller_path":"public/items","controller_action":"public/items#show","controller":"items","action":"show","action_path":"public/items#show","env":"production","flash":{},"is_team_page":false,"request_parameters":{"controller":"public/items","action":"show","user_id":"naoki85","type":"items","id":"4f44601f1365c18035f4"},"root_domain":"qiita.com","variant":null,"config":{"mixpanel":{"per_team":"c0a2116368b33b44b5029ebd2cc9b094","public":"17d24b448ca579c365d2d1057f3a1791","team":"b7c0342acba2dbc8742484d98788efb3"},"default_locale":"en","locale":"ja"},"team":null,"user":{"id":20093,"url_name":"cptskgj","profile_image_url":"https://qiita-image-store.s3.amazonaws.com/0/20093/profile-images/1473682902","email":"cptskgj@mac.com","staff":false},"GIT_BRANCH":null,"DEBUG":false};
+
+  /* You are logged in */
+</script>
+<div class="st-HeaderContainer"><script type="application/json" class="js-react-on-rails-component" data-component-name="GlobalHeaderContainer" data-dom-id="GlobalHeaderContainer-react-component-b730e18a-92ac-4213-bf9d-aee58370eb7d">{"user":{"profile_image_url":"https://qiita-image-store.s3.amazonaws.com/0/20093/profile-images/1473682902","team_only":false,"url_name":"cptskgj"},"realms":[{"human_name":"Qiita","is_current_realm":true,"is_qiita":true,"is_qiita_team":false,"logged_in_user":{"profile_image_url":"https://qiita-image-store.s3.amazonaws.com/0/20093/profile-images/1473682902","url_name":"cptskgj"},"team_id":null,"url":"https://qiita.com/"}],"teamFindUrl":"https://teams-center.qiita.com/find_team","unreadNotificationsCount":0,"locale":"ja","is_fluid":false}</script>
+    <div id="GlobalHeaderContainer-react-component-b730e18a-92ac-4213-bf9d-aee58370eb7d"></div>
+
+</div><div id="main"><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', '', 'auto', { name: 'userTracker' });
+ga('userTracker.send', 'pageview');</script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="application/ld+json">{  "@context": "http://schema.org",  "@type": "BreadcrumbList",  "itemListElement": [    {      "@type": "ListItem",      "position": 1,      "item": {        "@id": "/",        "name": "Qiita"      }    },    {      "@type": "ListItem",      "position": 2,      "item": {        "@id": "/tags/Git",        "name": "Git"      }    }  ]}</script><article class="p-items logged-in" itemscope="itemscope" itemtype="http://schema.org/Article"><div class="p-items_wrapper"><div class="p-items_container"><div class="p-items_stickyMenu it-Actions" data-mount-target="articleStickyMenu"></div><div class="p-items_main"><div class="p-items_article" data-article-props="{&quot;author&quot;:{&quot;name&quot;:&quot;&quot;,&quot;urlName&quot;:&quot;naoki85&quot;,&quot;profileImageUrl&quot;:&quot;https://qiita-image-store.s3.amazonaws.com/0/118817/profile-images/1499296585&quot;,&quot;description&quot;:&quot;主にPHPとRubyを勉強しています。\r\n宜しくお願いします！&quot;,&quot;showUrl&quot;:&quot;https://qiita.com/naoki85&quot;,&quot;followUrl&quot;:&quot;https://qiita.com/naoki85/follow&quot;,&quot;unfollowUrl&quot;:&quot;https://qiita.com/naoki85/unfollow&quot;},&quot;commentsCount&quot;:0,&quot;createdAtInUnixtime&quot;:1459653717,&quot;isBanned&quot;:false,&quot;isEditRequestSendable&quot;:true,&quot;isLikable&quot;:true,&quot;isLiked&quot;:false,&quot;isPublic&quot;:true,&quot;isSecret&quot;:false,&quot;isStockable&quot;:true,&quot;isStocked&quot;:false,&quot;likeUrl&quot;:&quot;https://qiita.com/api/internal/items/4f44601f1365c18035f4/likes&quot;,&quot;likesCount&quot;:102,&quot;showUrl&quot;:&quot;https://qiita.com/naoki85/items/4f44601f1365c18035f4&quot;,&quot;stockUrl&quot;:&quot;https://qiita.com/naoki85/items/4f44601f1365c18035f4/stock&quot;,&quot;summary&quot;:&quot;前回、\u003ca href=\&quot;http://qiita.com/naoki85/items/c7660d70347e9e70b201\&quot; rel=\&quot;nofollow noopener\&quot; target=\&quot;_blank\&quot;\u003eはじめてのSourceTree（使い方編）\u003c/a\u003eの続きになります。\n組織でGitを使う方は多いと思いますが、自分で勉強する環境が欲しい方向けにログを残します。\n\u003cstrong\u003e2018.1.22 追記\u003c/strong\u003e\n私も少しGi…&quot;,&quot;tags&quot;:[{&quot;isFollowed&quot;:false,&quot;largeIconUrl&quot;:&quot;https://s3-ap-northeast-1.amazonaws.com/qiita-tag-image/7e82b97e0bfb6453e820d189c4cb22957e764b40/large.jpg?1479905066&quot;,&quot;mediumIconUrl&quot;:&quot;https://s3-ap-northeast-1.amazonaws.com/qiita-tag-image/0cf6963d8fa29f0cbfcf62e65c70fc899b081a5b/medium.jpg?1479905066&quot;,&quot;name&quot;:&quot;Git&quot;,&quot;showUrl&quot;:&quot;https://qiita.com/tags/Git&quot;,&quot;thumbIconUrl&quot;:&quot;https://s3-ap-northeast-1.amazonaws.com/qiita-tag-image/119f36daf32ef89ad4d4b95f3a74276715aec684/thumb.jpg?1479905066&quot;,&quot;urlName&quot;:&quot;git&quot;},{&quot;isFollowed&quot;:false,&quot;largeIconUrl&quot;:&quot;https://s3-ap-northeast-1.amazonaws.com/qiita-tag-image/d690952b6d2dfe72d23b0c961ce5d95ba501b6b3/large.jpg?1478446925&quot;,&quot;mediumIconUrl&quot;:&quot;https://s3-ap-northeast-1.amazonaws.com/qiita-tag-image/b9122c7d0c064409a8b3167a55f3bb9bd66b6f8f/medium.jpg?1478446925&quot;,&quot;name&quot;:&quot;GitHub&quot;,&quot;showUrl&quot;:&quot;https://qiita.com/tags/GitHub&quot;,&quot;thumbIconUrl&quot;:&quot;https://s3-ap-northeast-1.amazonaws.com/qiita-tag-image/7fbd5eeb2cf394dbb9fe2e63915835945d2da2df/thumb.jpg?1478446925&quot;,&quot;urlName&quot;:&quot;github&quot;},{&quot;isFollowed&quot;:false,&quot;largeIconUrl&quot;:&quot;https://s3-ap-northeast-1.amazonaws.com/qiita-tag-image/9dfe3c53e03da1e91c7650e65098053e503cbd9f/large.jpg?1512465000&quot;,&quot;mediumIconUrl&quot;:&quot;https://s3-ap-northeast-1.amazonaws.com/qiita-tag-image/7275d7a58ca17c7954b254a9024643c1fe0a874f/medium.jpg?1512465000&quot;,&quot;name&quot;:&quot;SourceTree&quot;,&quot;showUrl&quot;:&quot;https://qiita.com/tags/SourceTree&quot;,&quot;thumbIconUrl&quot;:&quot;https://s3-ap-northeast-1.amazonaws.com/qiita-tag-image/2a49709b06f3b5940acbeac25e36bd8f1cfb1f50/thumb.jpg?1512465000&quot;,&quot;urlName&quot;:&quot;sourcetree&quot;}],&quot;title&quot;:&quot;SourceTreeとGithubでGitの練習環境をつくる&quot;,&quot;unstockUrl&quot;:&quot;https://qiita.com/naoki85/items/4f44601f1365c18035f4/unstock&quot;,&quot;uuid&quot;:&quot;4f44601f1365c18035f4&quot;}" data-following-likers-props="[]"><div class="it-Header"><div class="u-flex-center-between mb-3"><div class="it-Header_info"><div class="it-Header_author"><a href="/naoki85"><img class="it-Header_authorImage" src="https://qiita-image-store.s3.amazonaws.com/0/118817/profile-images/1499296585" alt="1499296585" /></a> <a class="it-Header_authorName" href="/naoki85">@naoki85</a> </div><div class="it-Header_time"><meta content="2016-04-03T12:21:57+09:00" itemprop="datePublished" /><span data-toggle="tooltip" title="2016年04月03日に投稿"><time datetime="2018-01-22T14:09:50+09:00" itemprop="dateModified">2018年01月22日</time>に更新</span></div><div class="it-Header_meta"><div class="it-Header_manipulate"><div class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="fa fa-ellipsis-h fa-lg"></span></a><ul class="dropdown-menu dropdown-menu-right"><li class="dropdown__item"><a href="/naoki85/items/4f44601f1365c18035f4/revisions"><span class="fa fa-fw fa-history"></span> 編集履歴</a></li><li class="dropdown__item"><a href="/naoki85/items/4f44601f1365c18035f4/patches"><span class="fa fa-fw fa-inbox"></span> 編集リクエスト一覧</a></li><li class="dropdown__item"><a href="/naoki85/items/4f44601f1365c18035f4/likers"><span class="fa fa-fw fa-thumbs-up"></span> いいねしたユーザー一覧</a></li><li class="dropdown__item"><a href="/naoki85/items/4f44601f1365c18035f4.md"><span class="fa fa-fw fa-file-text-o"></span> Markdownで本文を見る</a></li><li class="divider" role="separator"></li><li class="dropdown__item"><a data-target=".js-report-form" data-toggle="modal" href="#"><span class="fa fa-fw fa-flag"></span> 問題がある投稿を報告する</a></li></ul></div></div></div></div></div><h1 class="it-Header_title" itemprop="headline">SourceTreeとGithubでGitの練習環境をつくる</h1><div class="it-Tags"><a class="it-Tags_item" href="/tags/Git"><span>Git</span></a><a class="it-Tags_item" href="/tags/GitHub"><span>GitHub</span></a><a class="it-Tags_item" href="/tags/SourceTree"><span>SourceTree</span></a></div></div><div data-mount-target="mobileArticleActions"></div><section class="it-MdContent" itemprop="articleBody"><div id="item-4f44601f1365c18035f4"><p>前回、<a href="http://qiita.com/naoki85/items/c7660d70347e9e70b201" id="reference-a03c92ace708cb4b183c">はじめてのSourceTree（使い方編）</a>の続きになります。<br>
+組織でGitを使う方は多いと思いますが、自分で勉強する環境が欲しい方向けにログを残します。<br>
+<strong>2018.1.22 追記</strong><br>
+私も少しGitの扱いに慣れてきたので、ブログの方に私がよく使うGitコマンドの方をまとめました。<br>
+もしよろしければご覧ください。<br>
+<a href="https://re-engines.com/tag/git/" rel="nofollow noopener" target="_blank">https://re-engines.com/tag/git/</a></p>
+
+<h1>
+<span id="gitとgithubの違い" class="fragment"></span><a href="#git%E3%81%A8github%E3%81%AE%E9%81%95%E3%81%84"><i class="fa fa-link"></i></a>GitとGithubの違い</h1>
+
+<p>似ている名前の2つ、それぞれどのようなものなのか？<br>
+ざっくり違いをまとめます。</p>
+
+<h2>
+<span id="git" class="fragment"></span><a href="#git"><i class="fa fa-link"></i></a>Git</h2>
+
+<p>バージョン管理システムのことです。<br>
+（分散型と集中型がありますが、Gitは分散型です。ここでは割愛しますが、興味のある方は調べてみてください。→<a href="http://d.hatena.ne.jp/hyoshiok/20140205/p1" rel="nofollow noopener" target="_blank">集中型バージョン管理システムと分散型バージョン管理システムって</a>）<br>
+バージョン管理とは、要は<strong>変更履歴を残すこと</strong>です。<br>
+変更履歴は<strong>リポジトリ</strong>と呼ばれるものに保管されます。</p>
+
+<p>例えば、下図のように、開発は時間とともに進んでいきます。<br>
+区切りの良いタイミングで今の状態をリポジトリに保存する（コミット）と、仮に「以前の状態に戻したい！」というときでも対応できます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/dceba1931c17a0fd115603ae00ae06ca228c4a24/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f38613133626136392d396336392d333137632d663361322d3739616139343138343963322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/dceba1931c17a0fd115603ae00ae06ca228c4a24/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f38613133626136392d396336392d333137632d663361322d3739616139343138343963322e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/8a13ba69-9c69-317c-f3a2-79aa941849c2.png"></a></p>
+
+<p>そして、Gitの特徴といえば、様々な人が共同で作業をすることができます。<br>
+元のデータはサーバーなどにある状態で、各人が自分のパソコンにそのデータを持ってきて作業します（クローン）。<br>
+ある程度区切りがついたら、そのデータを元のデータに反映させます（プッシュ）。<br>
+また、他の人が反映させた変更履歴を自分のパソコンに持ってくることも可能です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/97626844097d7e749f8012bac0dda170e5dc5cb1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f35653535613266632d313262302d666334662d316431372d3231373437373735353338372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/97626844097d7e749f8012bac0dda170e5dc5cb1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f35653535613266632d313262302d666334662d316431372d3231373437373735353338372e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/5e55a2fc-12b0-fc4f-1d17-217477755387.png"></a><br>
+　　　　　　　　　　　　　　　　　画像出典：<a href="http://www.backlog.jp/git-guide/" rel="nofollow noopener" target="_blank">サルでも分かるGit入門</a></p>
+
+<h2>
+<span id="github" class="fragment"></span><a href="#github"><i class="fa fa-link"></i></a>Github</h2>
+
+<p>GithubはこのGitの仕組みを利用して、世界中の人が自分の作品を保存、公開できるようにしたウェブサービスのことです。<br>
+<strong>Githubはあくまでも、Gitを使いやすくするサービス</strong>だということです。<br>
+こちらは、無料で利用できます。<br>
+Githubに似たサービスは他にもありますが、今回はGithubを利用します。</p>
+
+<p>参考資料<br>
+<a href="http://blog.sixapart.jp/2014-03/mttips-02-what-is-git.html" rel="nofollow noopener" target="_blank">「そもそもGitって何？」、「GitとGitHubは何が違うの？」にシンプルに答えるよ</a></p>
+
+<h1>
+<span id="githubに勉強用のリポジトリを作成する" class="fragment"></span><a href="#github%E3%81%AB%E5%8B%89%E5%BC%B7%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Githubに勉強用のリポジトリを作成する</h1>
+
+<p><a href="https://github.com/" rel="nofollow noopener" target="_blank">Github</a>に登録、ログインされていない方は済ませておいてください。</p>
+
+<p>新規リポジトリを作成します。<br>
+画面右上の「+」マークをクリックして、「New repository」を選択してください。<br>
+<a href="https://camo.qiitausercontent.com/084afe504a6a26ffbbb7d91954c4a67502ac79a3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f31303233316633612d303961642d333735392d343432662d6630636432646436653737332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/084afe504a6a26ffbbb7d91954c4a67502ac79a3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f31303233316633612d303961642d333735392d343432662d6630636432646436653737332e706e67" width="150px" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/10231f3a-09ad-3759-442f-f0cd2dd6e773.png"></a><br>
+リポジトリの作成画面になるので、リポジトリの名前と、READMEの項目にチェックがついているか確認しておいてください。<br>
+（チェックがついていないと、面倒な処理が必要なようです。→<a href="http://d.hatena.ne.jp/yk5656/20140212/1393158928" rel="nofollow noopener" target="_blank">Githubにリポジトリを作成してみる</a>）<br>
+<a href="https://camo.qiitausercontent.com/cd629d7b66da10c5e70aca022486b9f52426448f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f35303134383333382d366465352d313362652d363863612d6431656538306139616633622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/cd629d7b66da10c5e70aca022486b9f52426448f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f35303134383333382d366465352d313362652d363863612d6431656538306139616633622e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/50148338-6de5-13be-68ca-d1ee80a9af3b.png"></a></p>
+
+<p>作成が完了すると、下記のようなページができます。<br>
+まだ<code>README.md</code>以外ファイルは何もありません。<br>
+<code>README.md</code>はリポジトリを誰かと共有するときや公開するときに重要な役割を持ちます。<br>
+今回は自分用なので割愛します。<br>
+（README.mdについてはこちらのサイトを参照ください。→<a href="http://deeeet.com/writing/2014/07/31/readme/" rel="nofollow noopener" target="_blank">わかりやすいREADME.mdを書く</a>）</p>
+
+<p><a href="https://camo.qiitausercontent.com/ee8eb7dc1fc08a0e8f516346c13788636ecb693d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f61633466313434392d326261332d633363382d306636622d6266663466653235303833612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ee8eb7dc1fc08a0e8f516346c13788636ecb693d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f61633466313434392d326261332d633363382d306636622d6266663466653235303833612e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/ac4f1449-2ba3-c3c8-0f6b-bff4fe25083a.png"></a></p>
+
+<p>ついでにマスターデータも作成して、Githubにアップしてしまいましょう。<br>
+適当に自分のローカルでファイルを作ってください。<br>
+（今回私は<code>masterディレクトリ</code>に、適当なHTML文章を書いた<code>index.html</code>を作成しました。）<br>
+これを先程の画面の「Upload files」からアップします。</p>
+
+<p><a href="https://camo.qiitausercontent.com/1df68942a2d02bd76e78811e7d9b1501e980ec9b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f39396333366565612d393737352d623334312d373039352d6437313265646639313231392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1df68942a2d02bd76e78811e7d9b1501e980ec9b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f39396333366565612d393737352d623334312d373039352d6437313265646639313231392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/99c36eea-9775-b341-7095-d712edf91219.png"></a></p>
+
+<p>これも変更履歴として残るため、分かりやすいタイトルと説明をつけましょう。<br>
+（何も入れなくてもデフォルトの文字列が入ります。）<br>
+よければ「Commit changes」を押します。<br>
+そうすると、トップの画面に追加したファイルが表れたと思います。<br>
+これで、リポジトリの作成が完了しました。<br>
+これをリモートリポジトリと呼びます。</p>
+
+<p>今度はローカルリポジトリを作成します。</p>
+
+<h1>
+<span id="sourcetreeでローカルリポジトリ作成" class="fragment"></span><a href="#sourcetree%E3%81%A7%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>SourceTreeでローカルリポジトリ作成</h1>
+
+<p><a href="http://qiita.com/naoki85/items/c7660d70347e9e70b201">はじめてのSourceTree（使い方編）</a>に書いたことは割愛します。</p>
+
+<h2>
+<span id="sourcetreeとは" class="fragment"></span><a href="#sourcetree%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>SourceTreeとは</h2>
+
+<p>Gitのクライアントツールと呼ばれ、Gitの操作を簡単にするものです。<br>
+私も前回の記事を書くまではターミナルでGitコマンドを打ち込んでいましたが、SourceTreeの方が見やすいです。</p>
+
+<h2>
+<span id="クローンする" class="fragment"></span><a href="#%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>クローンする</h2>
+
+<p>まずは、先程作成したリポジトリをクローンします。<br>
+Github上に、そのリポジトリのURLがあるため、そちらをコピーします。</p>
+
+<p><a href="https://camo.qiitausercontent.com/2d30c3c81374ec5580fc7087232cf273c53c3861/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f30353763376535322d636130322d323264622d313735342d3530343037383963656162342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/2d30c3c81374ec5580fc7087232cf273c53c3861/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f30353763376535322d636130322d323264622d313735342d3530343037383963656162342e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/057c7e52-ca02-22db-1754-5040789ceab4.png"></a></p>
+
+<p>そして、SourceTreeを起動させます。<br>
+「新規リポジトリ」→「URLからクローン」を押し、先程コピーしたURLとクローン先のディレクトリを指定します。<br>
+（クローン先はには中身が空のディレクトリを用意してあげる必要があります。）<br>
+そしてクローンすると、新しくローカルリポジトリが作成されます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/7e96aa6db790812aa3ae8e3807de50a9b3cd706e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f34663565323130342d653665342d613932622d306462622d3962396533313032313663312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7e96aa6db790812aa3ae8e3807de50a9b3cd706e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f34663565323130342d653665342d613932622d306462622d3962396533313032313663312e706e67" width="200px" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/4f5e2104-e6e4-a92b-0dbb-9b9e310216c1.png"></a></p>
+
+<p>SourceTree上で見るとこのような画面になると思います。</p>
+
+<p><a href="https://camo.qiitausercontent.com/d95bf15d03d76943ad761e8a6f29b232ed8be824/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f31363933396237652d306463652d343364312d636332632d3634373634353336623133392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d95bf15d03d76943ad761e8a6f29b232ed8be824/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f31363933396237652d306463652d343364312d636332632d3634373634353336623133392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/16939b7e-0dce-43d1-cc2c-64764536b139.png"></a></p>
+
+<p>まだ作成したばかりなので、パッとしません。<br>
+そこで、作成した<strong>ローカルリポジトリ</strong>に新しくファイルを加えましょう。<br>
+例えば私は、適当なPHP文を書いたindex.phpを加えました。<br>
+そして、コミットまでしてみましょう。<br>
+<a href="http://qiita.com/naoki85/items/c7660d70347e9e70b201">はじめてのSourceTree（使い方編）</a></p>
+
+<p>そうすると、グラフの方が変化したと思います。<br>
+これは、新しく「index.phpを追加」した変更履歴を作成したことになります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/a28beb8d98ccaae43075a9f37d9f4e71091a5a98/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f66303639393062632d323063382d393330302d646137312d3563613666636332313236342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a28beb8d98ccaae43075a9f37d9f4e71091a5a98/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f66303639393062632d323063382d393330302d646137312d3563613666636332313236342e706e67" width="400px" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/f06990bc-20c8-9300-da71-5ca6fcc21264.png"></a></p>
+
+<p>もしコミットの際に、「コミット後、ただちにプッシュする」にチェックを入れた方は既にリモートリポジトリにも反映されています。<br>
+（不安な方は、SourceTree上部バーの「プッシュ」に数字がある人は、まだ反映されていない項目があるということです。）<br>
+もし未プッシュであれば、プッシュしてしまいましょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/02b2234f263d0172b1bebc70a179554fda0178c4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f35633734646637662d386136392d643964662d663735302d6565623563663863623066642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/02b2234f263d0172b1bebc70a179554fda0178c4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f35633734646637662d386136392d643964662d663735302d6565623563663863623066642e706e67" width="150px" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/5c74df7f-8a69-d9df-f750-eeb5cf8cb0fd.png"></a></p>
+
+<h1>
+<span id="リモートリポジトリの確認" class="fragment"></span><a href="#%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>リモートリポジトリの確認</h1>
+
+<p>プッシュすれば、Githubの方にも反映されています。<br>
+<a href="https://github.com/" rel="nofollow noopener" target="_blank">Github</a>に作成した自分のリポジトリ画面を見ていただくと、追加したファイルが反映されていることが分かります。<br>
+また、画面中段の「Graphs」→「Network」を押すと、SourceTreeと同じようなグラフを見ることができます。<br>
+（SourceTreeは時間軸が縦ですが、Githubは横なので少し違和感がありますが。）</p>
+
+<p><a href="https://camo.qiitausercontent.com/03e3da3f4e1036b21476bb5788aa9aab54a668bb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f33363431303466362d626234302d393339612d626136312d3630323561303237323463322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/03e3da3f4e1036b21476bb5788aa9aab54a668bb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3131383831372f33363431303466362d626234302d393339612d626136312d3630323561303237323463322e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/118817/364104f6-bb40-939a-ba61-6025a02724c2.png"></a></p>
+
+<p>今はmasterブランチしかないため寂しいですが、これから練習をしていけば、グラフがどんどん変化します。<br>
+しかし、グラフとして変更履歴を追うことができるため、「このとき何やった」、「あのときこれやった」などが分かりやすくなります。</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>今回は、自分用のGit練習環境を整える方法です。<br>
+私も仕事にてGitを使用しておりますが、やはりまだまだ操作が未熟で、練習したいと考えておりました。<br>
+練習を実際に製品を開発している環境でやると、ミスしたときが怖いので、やはり自分の練習環境が必要だと思います。<br>
+（自分用ならどれだけログがあれようが、リバート、リセットをしようが怒られないので笑）</p>
+
+<p>当面やることは、</p>
+
+<ul>
+<li>もう1つローカルリポジトリを作成し、わざとコンフリクトを起こした後、それを解決する</li>
+<li>作業ブランチを複数行き来して作業する（スタッシュ）</li>
+<li>その他、メジャーどころのコマンドしか知らないので、あまり使用しないようなコマンドも使ってみる</li>
+</ul>
+
+<p>などです。</p>
+
+<p>ご参考にしていただければ嬉しく思います。</p>
+</div></section></div><div class="p-items_footnote"><ul class="references js-referencesView mt-5"><li class="references_header"><i class="fa fa-fw fa-link"></i> この記事は以下の記事からリンクされています</li><li class="references_reference js-reference"><a href="/naoki85/items/c7660d70347e9e70b201#_reference-903b69e797b0df66fe0e"><img alt="" width="18" height="18" src="https://qiita-image-store.s3.amazonaws.com/0/118817/profile-images/1499296585" />はじめてのSourceTree（使い方編）</a><span>からリンク</span><time class="references_datetime js-dateTimeView" datetime="2016-04-03T03:24:50+00:00">2年弱前</time></li><li class="references_reference js-reference"><a href="/naoki85/items/cabf7eee9564e56c3437#_reference-8ae9f3d208697f381ffa"><img alt="" width="18" height="18" src="https://qiita-image-store.s3.amazonaws.com/0/118817/profile-images/1499296585" />deviseを使ってみる</a><span>からリンク</span><time class="references_datetime js-dateTimeView" datetime="2016-09-22T12:51:49+00:00">1年以上前</time></li><li class="references_reference js-reference"><a href="/tksnino/items/b0064796a2b54f48d6fe#_reference-c0be96d44012521e1cb7"><img alt="" width="18" height="18" src="https://qiita-image-store.s3.amazonaws.com/0/86958/profile-images/1473703921" />Git初心者がGit使ったりGitサーバー建てたりする</a><span>からリンク</span><time class="references_datetime js-dateTimeView" datetime="2017-09-03T13:14:14+00:00">5ヶ月前</time></li></ul></div></div><div class="p-items_options"></div><div class="p-items_toc"><script type="application/json" id="js-react-on-rails-context">{}</script>
+<script type="application/json" class="js-react-on-rails-component" data-component-name="Toc" data-dom-id="Toc-react-component-229e9533-0599-4246-8ac0-2723d899f437">{"body":"\u003cul\u003e\n\u003cli\u003e\n\u003ca href=\"#git%E3%81%A8github%E3%81%AE%E9%81%95%E3%81%84\"\u003eGitとGithubの違い\u003c/a\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ca href=\"#git\"\u003eGit\u003c/a\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003ca href=\"#github\"\u003eGithub\u003c/a\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003ca href=\"#github%E3%81%AB%E5%8B%89%E5%BC%B7%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B\"\u003eGithubに勉強用のリポジトリを作成する\u003c/a\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003ca href=\"#sourcetree%E3%81%A7%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E4%BD%9C%E6%88%90\"\u003eSourceTreeでローカルリポジトリ作成\u003c/a\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ca href=\"#sourcetree%E3%81%A8%E3%81%AF\"\u003eSourceTreeとは\u003c/a\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003ca href=\"#%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%81%99%E3%82%8B\"\u003eクローンする\u003c/a\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003ca href=\"#%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E7%A2%BA%E8%AA%8D\"\u003eリモートリポジトリの確認\u003c/a\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003ca href=\"#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB\"\u003eおわりに\u003c/a\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n"}</script>
+    <div id="Toc-react-component-229e9533-0599-4246-8ac0-2723d899f437"></div>
+
+</div></div></div><div class="p-items_container"><div class="p-items_leftDummy"></div><div class="p-items_main"><div class="p-items_aside"><div class="it-AuthorInfo mt-5 mb-5" itemprop="author" itemscope="" itemtype="http://schema.org/Person"><a href="/naoki85"><img class="it-AuthorInfo_image" itemprop="image" src="https://qiita-image-store.s3.amazonaws.com/0/118817/profile-images/1499296585" alt="1499296585" /></a><div class="it-AuthorInfo_body"><div class="it-AuthorInfo_header"><a class="it-AuthorInfo_urlname" itemprop="name" href="/naoki85">@naoki85</a></div><div class="it-AuthorInfo_description">主にPHPとRubyを勉強しています。
+宜しくお願いします！</div><div class="it-AuthorInfo_footer"><script type="application/json" class="js-react-on-rails-component" data-component-name="UserFollowButton" data-dom-id="UserFollowButton-react-component-5510d791-a746-4e5d-886a-20b6d3ba367a">{"initial_followed_by":false,"position":"ArticleAuthorInfo","size":"btn-xs","url_name":"naoki85"}</script>
+    <div id="UserFollowButton-react-component-5510d791-a746-4e5d-886a-20b6d3ba367a"></div>
+
+</div></div></div><div class="p-items_Footer mb-5"><div data-mount-target="articleFooterMenu"></div><div class="it-Footer_social mt-1of2"><div class="socialButtons"><div class="socialButtons_twitter"><a class="twitter-share-button" data-text="SourceTreeとGithubでGitの練習環境をつくる on @Qiita" data-url="https://qiita.com/naoki85/items/4f44601f1365c18035f4" href="https://twitter.com/share">ツイート</a></div><div class="socialButtons_hatebu"><a class="hatena-bookmark-button" data-hatena-bookmark-layout="simple-balloon" data-hatena-bookmark-title="SourceTreeとGithubでGitの練習環境をつくる" href="http://b.hatena.ne.jp/entry/https://qiita.com/naoki85/items/4f44601f1365c18035f4" title="はてブに追加"><img alt="はてブに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20" /></a><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js" type="text/javascript"></script></div><div class="socialButtons_googlePlus"><div class="g-plusone" data-href="https://qiita.com/naoki85/items/4f44601f1365c18035f4" data-size="medium"></div></div><div class="socialButtons_qiitadon"><a class="mastodonShareButton" href="https://qiitadon.com/share?text=SourceTree%E3%81%A8Github%E3%81%A7Git%E3%81%AE%E7%B7%B4%E7%BF%92%E7%92%B0%E5%A2%83%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B+by+naoki85+https%3A%2F%2Fqiita.com%2Fnaoki85%2Fitems%2F4f44601f1365c18035f4+%23Qiita+%23Git+%23GitHub+%23SourceTree" target="_blank" title="Qiitadonでトゥート">Toot</a></div><div class="socialButtons_facebook"><div class="fb-like" data-action="like" data-href="https://qiita.com/naoki85/items/4f44601f1365c18035f4" data-layout="button_count" data-share="false" data-show-faces="false"></div></div><div class="socialButtons_pocket"><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></div></div></div></div><div class="itemsShowComment_wrapper" id="comments"><script type="application/json" class="js-react-on-rails-component" data-component-name="PublicCommentListContainer" data-dom-id="PublicCommentListContainer-react-component-32a9c537-06ce-40b1-a097-7607b6ba17cb">{"currentUser":{"contribution":0,"created_at":"2013-04-17T15:40:42+09:00","id":20093,"is_admin":false,"profile_image_url":"https://qiita-image-store.s3.amazonaws.com/0/20093/profile-images/1473682902","suspended":false,"url_name":"cptskgj"},"initialComments":[],"monthly_public_image_uploadable_size_limit":2097152,"total_uploaded_public_image_size_in_current_month":0,"item":{"id":382379,"uuid":"4f44601f1365c18035f4","suspended":false,"secret":false},"owner":{"url_name":"naoki85"},"is_team":false,"is_project":false,"logged_in":true,"polling":false,"mention_candidates":[{"id":118817,"url_name":"naoki85","profile_image_url":"https://qiita-image-store.s3.amazonaws.com/0/118817/profile-images/1499296585"}]}</script>
+    <div id="PublicCommentListContainer-react-component-32a9c537-06ce-40b1-a097-7607b6ba17cb"></div>
+
+</div></div></div><div class="p-items_rightDummy"></div></div></article><div class="TagList__label" style="display:none"><span></span><span>Git</span></div><div class="TagList__label" style="display:none"><span></span><span>GitHub</span></div><div class="TagList__label" style="display:none"><span></span><span>SourceTree</span></div><div class="js-report-form modal fade reportForm"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button name="button" type="submit" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">問題がある投稿を報告する</h4></div><div class="modal-body"><form class="new_public_issue_report" id="new_public_issue_report" action="/api/internal/issue_reports" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="Lz1vwo5Nnd/k6iITYeSslNGIaxhGu7gNfRzR41/zqN/u+Ou7aXraToHfYeDzqvsNvPhu4G2DkkATnU5gKTGflA==" /><input type="hidden" value="PublicDomainArticle" name="public_issue_report[target_type]" id="public_issue_report_target_type" /><input type="hidden" value="382379" name="public_issue_report[target_id]" id="public_issue_report_target_id" /><p>この投稿にどのような問題がありますか？</p><br /><div class="form-group"><ul class="list-unstyled"><li><label><input required="required" type="radio" value="spam" name="public_issue_report[reason]" id="public_issue_report_reason_spam" /> スパムです </label></li><li><label><input required="required" type="radio" value="harassment" name="public_issue_report[reason]" id="public_issue_report_reason_harassment" /> 攻撃的または迷惑な内容を含んでいます </label></li><li><label><input required="required" type="radio" value="inappropriate_content" name="public_issue_report[reason]" id="public_issue_report_reason_inappropriate_content" /> 不適切な内容を含んでいます </label></li></ul></div><div class="reportForm_submitButtonContainer"><button name="button" type="submit" class="btn btn-primary reportForm_submitButton"><i class="fa fa-send"></i> 送信</button></div></form></div></div></div></div></div><footer class="footer"><div class="footer_inner"><div class="footer_container"><ul class="footer_links-left"><li class="footer_link"><a class="footer_copyright" href="http://increments.co.jp">© 2011-2018 Increments Inc.</a></li><li class="footer_link"><a href="https://qiita.com/terms">利用規約</a></li><li class="footer_link"><a href="https://qiita.com/privacy">プライバシー</a></li><li class="footer_link"><a href="http://help.qiita.com">ヘルプ</a></li><li class="footer_link"><a href="https://increments.zendesk.com/anonymous_requests/new">お問い合わせ</a></li></ul><ul class="footer_links-right"><li class="footer_link"><a href="https://qiita.com/about">Qiitaとは</a></li><li class="footer_link"><a href="/users">ユーザー</a></li><li class="footer_link"><a href="/tags">タグ</a></li><li class="footer_link"><a href="/items">投稿</a></li><li class="footer_link"><a href="http://blog.qiita.com">ブログ</a></li><li class="footer_link"><a href="https://qiita.com/api/v2/docs">API</a></li><li class="footer_link"><a href="https://teams.qiita.com/">Team</a></li><li class="footer_link"><a href="http://kobito.qiita.com">Kobito</a></li><li class="footer_link"><a class="js-public-form-feedback-link" data-target=".js-feedback-form" data-toggle="modal" href=""><i class="fa fa-heart"></i> ご意見 <i class="fa fa-caret-down"></i></a></li></ul></div></div></footer><div class="js-feedback-form modal fade feedbackForm"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button name="button" type="submit" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">ご意見</h4></div><div class="modal-body"><form class="js-feedback-form-form" action="/feedbacks" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="2yhqNtQC9sY/MtkVWKRtdn3zjgWHSfRsVsv5lHTSgUAa7e5PMzWxV1oHmubK6jrvEIOL/axx3iE4SmYXAhC2Cw==" /><input type="hidden" name="redirect_path" id="redirect_path" value="/naoki85/items/4f44601f1365c18035f4" /><div class="form-group"><textarea name="feedback[message]" id="feedback_message" class="form-control js-feedback-form-text-area" placeholder="Qiitaについてのご意見をお聞かせください。" required="required" rows="5">
+</textarea></div><div class="feedbackForm_submitButtonContainer"><button name="button" type="submit" class="btn btn-primary feedbackForm_submitButton"><i class="fa fa-send"></i> 送信</button><p class="feedbackForm_note">いただいたご意見への返信は行っておりません。<br />返信の必要な内容については、<a href="https://increments.zendesk.com/anonymous_requests/new">こちら</a> からお問い合わせください。</p></div><div style="position:fixed;top:-99999px;opacity:0.0001;"><input name="feedback[name]" type="text" /></div></form></div></div></div></div><script>// if (window.mixpanel instanceof Element) {
+//   window.mixpanel = [];
+// }
+// (function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+// for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);</script><script src="https://cdn.qiita.com/assets/public-01e057aaed01662567bdda19b0d73895.min.js"></script></body></html>
